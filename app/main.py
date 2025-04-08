@@ -2,6 +2,8 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import mysql.connector
 import os
+from dotenv import load_dotenv
+load_dotenv()
 
 app = FastAPI()
 
@@ -22,7 +24,7 @@ def read_root():
 def db_status():
     try:
         connection = mysql.connector.connect(
-            host="db",  # ← Dockerコンテナ名
+            host=os.getenv("MYSQL_HOST"),
             user=os.getenv("MYSQL_USER"),
             password=os.getenv("MYSQL_PASSWORD"),
             database=os.getenv("MYSQL_DATABASE")
