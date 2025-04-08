@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch:
+  workflow_dispatch:    
 
 jobs:
   build-and-push:
@@ -33,7 +33,7 @@ jobs:
       # Dockerイメージのビルド
       - name: Build Docker image
         run: |
-          docker build -t ${{ secrets.ECR_REPOSITORY }}:${{ secrets.IMAGE_TAG }} -f infra/Dockerfile.prod .
+          docker build -t ${{ secrets.ECR_REPOSITORY }}:${{ secrets.IMAGE_TAG }} -f Dockerfile .
 
       # Dockerイメージのタグ付け
       - name: Tag Docker image
